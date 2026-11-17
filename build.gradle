@@ -26,4 +26,8 @@ tasks.withType(JavaCompile).configureEach {
 
 jar {
     archiveBaseName = 'NuclearFactory'
+    from('mod.hjson')
+    from('sprites') {
+        into 'sprites'
+    }
 }
