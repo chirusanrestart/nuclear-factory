@@ -1,0 +1,8 @@
+name: nuclear-factory
+displayName: Nuclear Factory
+author: chirusanrestart
+main: nuclearfactory.NuclearFactoryMod
+description: Adds uranium and plutonium ores as new resources.
+version: 0.1.0
+minGameVersion: 160
+java: true
