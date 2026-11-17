@@ -14,13 +14,13 @@ public final class NuclearBlocks {
         oreUranium = new OreBlock(NuclearItems.uranium) {{
             oreDefault = true;
             oreThreshold = 0.89f;
-            oreScale = 27.5f;
+            oreScale = 26.3f;
         }};
 
         orePlutonium = new OreBlock(NuclearItems.plutonium) {{
             oreDefault = true;
-            oreThreshold = 0.94f;
-            oreScale = 34f;
+            oreThreshold = 0.92f;
+            oreScale = 29.0f;
         }};
     }
 }
