@@ -11,7 +11,15 @@ public final class NuclearItems {
     }
 
     public static void load() {
-        uranium = new Item("uranium", Color.valueOf("83c65a"));
-        plutonium = new Item("plutonium", Color.valueOf("b56ad9"));
+        uranium = new Item("uranium", Color.valueOf("83c65a")) {{
+            hardness = 4;
+            cost = 1.2f;
+            radioactivity = 0.8f;
+        }};
+        plutonium = new Item("plutonium", Color.valueOf("d58b55")) {{
+            hardness = 5;
+            cost = 1.5f;
+            radioactivity = 1.2f;
+        }};
     }
 }
