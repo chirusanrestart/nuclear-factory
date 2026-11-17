@@ -17,6 +17,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
       - name: Generate ore sprites
         run: python3 tools/generate_sprites.py
       - name: Build mod
