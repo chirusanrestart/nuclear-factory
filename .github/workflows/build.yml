@@ -23,6 +23,37 @@ jobs:
         run: python3 tools/generate_sprites.py
       - name: Build mod
         run: gradle build --no-daemon
+      - name: Verify mod entrypoint in JAR
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CLASS_FILE="build/classes/java/main/nuclearfactory/NuclearFactoryMod.class"
+          test -f "$CLASS_FILE" || {
+            echo "::error::NuclearFactoryMod.class was not compiled."
+            exit 1
+          }
+
+          JAR_FILE="$(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*-sources.jar' | head -n 1)"
+          test -n "$JAR_FILE" || {
+            echo "::error::No mod JAR was produced in build/libs."
+            exit 1
+          }
+
+          echo "Checking JAR: $JAR_FILE"
+          jar tf "$JAR_FILE" > build/jar-contents.txt
+          grep -Fxq "mod.hjson" build/jar-contents.txt || {
+            echo "::error::mod.hjson is missing from the JAR root."
+            exit 1
+          }
+          grep -Fxq "nuclearfactory/NuclearFactoryMod.class" build/jar-contents.txt || {
+            echo "::error::nuclearfactory/NuclearFactoryMod.class is missing from the JAR."
+            echo "JAR contents:"
+            cat build/jar-contents.txt
+            exit 1
+          }
+
+          echo "Verified mod entrypoint and metadata in $JAR_FILE"
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
