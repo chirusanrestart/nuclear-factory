@@ -1,0 +1,6 @@
+name: nuclear-factory
+displayName: Nuclear Factory
+author: ChiruSan
+description: Um mod simples de Mindustry feito em JavaScript.
+version: 1.0.0
+minGameVersion: 160.7
